@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.3.8/css/bootstrap.min.css">
+</head>
+<body>
+<div CLASS="P-3">
+    <table class="table text-center border-1">
+        <thead>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>QUANTITY</th>
+        </thead>
+        <tbody>
+        <tr th:each="p:${productList}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.price}"></td>
+            <td th:text="${p.quantity}"></td>
+            <td>
+                <a class="btn btn-danger" th:href="@{/delete(id = ${p.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
