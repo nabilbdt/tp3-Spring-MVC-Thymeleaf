@@ -1,12 +1,15 @@
 package jee.mundia.tp3springmvcthymeleaf.web;
 
+import jakarta.validation.Valid;
 import jee.mundia.tp3springmvcthymeleaf.entities.Product;
 import jee.mundia.tp3springmvcthymeleaf.repository.ProductRepository;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -25,6 +28,18 @@ public class ProductController {
     public String home(){
         return "redirect:/index";
     }
+    @GetMapping("/newProduct")
+    public String newProduct(Model model){
+        model.addAttribute("product", new Product());
+        return "new-product";
+    }
+    @PostMapping("saveProduct")
+    public  String saveProduct(@Valid Product product, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) return "new-product";
+        productRepository.save(product);
+        return  "redirect:/index";
+    }
+
     @GetMapping("/delete")
     public  String delete(Long id){
         productRepository.deleteById(id);
