@@ -12,7 +12,7 @@
 <body>
 <div CLASS="P-3" layout:fragment="content">
     <div class="p-3">
-        <form method="post" th:action="@{/saveProduct}">
+        <form method="post" th:action="@{/admin/saveProduct}">
             <div class="mb-3">
                 <label class="form-label">Name</label>
                 <input class="form-control" type="text" name="name" th:value="${product.name}">
